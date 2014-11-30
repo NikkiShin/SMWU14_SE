@@ -1,4 +1,5 @@
-create table SE_member_st (id varchar(10), password varchar(10), name varchar(10), dapartment varchar(20);
+CREATE TABLE SE_member_st (id varchar(10), password varchar(10), name varchar(10), department varchar(20));
+INSERT INTO SE_member_st (id, password, name, department) VALUES ('admin', '1111', '관리자', '도서관');
 
 create table booklist (num int PRIMARY KEY auto_increment, title varchar(20), author varchar(10), publisher varchar(10), ISBN int, availability varchar(1), RentBy varchar(10)); 
 
