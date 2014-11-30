@@ -1,6 +1,14 @@
 CREATE TABLE SE_member_st (id varchar(10), password varchar(10), name varchar(10), department varchar(20));
 INSERT INTO SE_member_st (id, password, name, department) VALUES ('admin', '1111', '관리자', '도서관');
 
-create table booklist (num int PRIMARY KEY auto_increment, title varchar(20), author varchar(10), publisher varchar(10), ISBN int, availability varchar(1), RentBy varchar(10)); 
+------------------------------
 
-insert into booklist values (null, 'Java programming', 'S.H.Kim', 'freelec', 1, 'X', '1011234');
+CREATE TABLE booklist (num int PRIMARY KEY auto_increment, title varchar(25), author varchar(20), publisher varchar(10), ISBN 
+
+int, availability varchar(1), RentBy varchar(10)); 
+
+insert into booklist values (null, 'Java programming', 'S.H.Kim', 'freelec', 11, 'X', '1011234');
+insert into booklist values (null, 'Compiler', 'S.K.Lee', 'sunny', 22, 'X', '1011229');
+insert into booklist values (null, 'Software Engineering', 'K.Y.Lee', 'knowledge', 33, 'O', null);
+insert into booklist values (null, 'stranger', 'Albert Camus', 'minemsa', 44, 'O', null);
+insert into booklist values (null, 'The Old Man and the Sea', 'Ernest Hemingway', 'language', 55, 'O', null);
