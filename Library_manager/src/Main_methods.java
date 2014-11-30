@@ -23,7 +23,7 @@ public class Main_methods {
 		}
 	}
 
-	// 회원가입을 위해서...
+	// 회원가입
 	public boolean registerMember(String id, String pass, String name,
 			String department) {
 		String query = "insert into SE_member_st values (?, ?, ?, ?)";
@@ -37,13 +37,13 @@ public class Main_methods {
 			pstmt.executeUpdate();
 			pstmt.close();
 		} catch (SQLException ee) {
-			System.err.println("회원 가입 실패!! : " + ee.toString());
+			System.err.println("회원 가입 오류입니다 : " + ee.toString());
 			return false;
 		}
 		return true;
 	}
 
-	// login을 위해서...
+	// login
 	public boolean loginMember(String id, String pass) {
 		String query = "select * from SE_member_st where id = ? and password = ?";
 		
@@ -60,7 +60,7 @@ public class Main_methods {
 			rs.close();
 			pstmt.close();
 		} catch (SQLException ee) {
-			System.err.println("login 처리 실패!!");
+			System.err.println("login 실패");
 		}
 		return true;
 	}
