@@ -9,10 +9,12 @@ public class Admin_BookUpdat {
 	
 	
 	public Admin_BookUpdat() throws IOException{
-		System.out.println("===도서 정보 수정===");
+		//System.out.println("===도서 정보 수정===");
 		System.out.print("ISBN 입력: ");
 		int isbn = Integer.parseInt(in.readLine());
 		db.checkISBN(isbn);
+		
+		
 		
 	}
 }
