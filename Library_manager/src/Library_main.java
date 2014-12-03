@@ -3,8 +3,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 
-//회원가입 중복확인
-
 public class Library_main {
 	public static void main(String[] args) throws IOException {
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));

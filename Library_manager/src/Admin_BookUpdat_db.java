@@ -29,9 +29,9 @@ public class Admin_BookUpdat_db {
 	}
 
 	//ISBN »Æ¿Œ
-	//CREATE TABLE booklist (num int PRIMARY KEY auto_increment, title varchar(20), author varchar(10), publisher varchar(10), ISBN int, availability varchar(1), RentBy varchar(10)); 
+	//CREATE TABLE Booklist (num int PRIMARY KEY auto_increment, title varchar(20), author varchar(10), publisher varchar(10), ISBN int, availability varchar(1), RentBy varchar(10)); 
 	public void checkISBN(int isbn) throws NumberFormatException, IOException{
-		String query = "select title, author, publisher, ISBN, availability, RentBy from booklist where ISBN=" + isbn;
+		String query = "select title, author, publisher, ISBN, availability, RentBy from Booklist where ISBN=" + isbn;
 
 		try {
 

@@ -1,5 +1,10 @@
-create table SE_member_st (id varchar(10), password varchar(10), name varchar(10), dapartment varchar(20);
 
-create table booklist (num int PRIMARY KEY auto_increment, title varchar(20), author varchar(10), publisher varchar(10), ISBN int, availability varchar(1), RentBy varchar(10)); 
+CREATE TABLE Library_Member (id varchar(7) primary key, password varchar(10) not null, name varchar(10) not null, department varchar(20) not null);
 
-insert into booklist values (null, 'Java programming', 'S.H.Kim', 'freelec', 1, 'X', '1011234');
+CREATE TABLE Booklist (num int PRIMARY KEY auto_increment, title varchar(25) not null, author varchar(20) not null, publisher varchar(10) not null, ISBN int not null, availability varchar(1) not null, RentBy varchar(7)); 
+
+insert into Booklist values (null, 'Java programming', 'S.H.Kim', 'freelec', 11, 'X', '1011234');
+insert into Booklist values (null, 'Compiler', 'S.K.Lee', 'sunny', 22, 'X', '1011229');
+insert into Booklist values (null, 'Software Engineering', 'K.Y.Lee', 'knowledge', 33, 'O', null);
+insert into Booklist values (null, 'stranger', 'Albert Camus', 'minemsa', 44, 'O', null);
+insert into Booklist values (null, 'The Old Man and the Sea', 'Ernest Hemingway', 'language', 55, 'O', null);

@@ -15,7 +15,7 @@ public class Admin_BookAdd{
 
 	/*// for Add Book_Info.., 
 	public boolean addBook(int num, String title, String author, String publisher, int isbn, String avail, String rentBy) {
-		String query = "insert into booklist (?,?,?,?,?,?,?)";
+		String query = "insert into Booklist (?,?,?,?,?,?,?)";
 		try {
 			PreparedStatement pstmt = add.prepareStatement(query);
 			pstmt.setInt(1,num);// null 어떻게 넣는지

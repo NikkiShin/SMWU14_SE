@@ -25,7 +25,7 @@ public class Main_methods {
 	// 회원가입
 	public boolean registerMember(String id, String pass, String name,
 			String department) {
-		String query = "insert into SE_member_st values (?, ?, ?, ?)";
+		String query = "insert into Library_Member values (?, ?, ?, ?)";
 		
 		try {
 			PreparedStatement pstmt = dc.prepareStatement(query);
@@ -44,7 +44,7 @@ public class Main_methods {
 
 	// login
 	public boolean loginMember(String id, String pass) {
-		String query = "select * from SE_member_st where id = ? and password = ?";
+		String query = "select * from Library_Member where id = ? and password = ?";
 		
 		try {
 			PreparedStatement pstmt = dc.prepareStatement(query);
@@ -67,7 +67,7 @@ public class Main_methods {
 	// for Add Book_Info.., 
 
 		public boolean addBook(int num, String title, String author, String publisher, int isbn, String avail, String rentBy) {
-			String query = "insert into booklist values(?,?,?,?,?,?,?)";
+			String query = "insert into Booklist values(?,?,?,?,?,?,?)";
 			
 			try {
 				PreparedStatement pstmt = dc.prepareStatement(query);
