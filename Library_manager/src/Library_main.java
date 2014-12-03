@@ -3,16 +3,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 
-//회원가입 중복확인
-
 public class Library_main {
 	public static void main(String[] args) throws IOException {
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		Main_methods dao = new Main_methods();
-		
-		//추가
-		
-		
+		Student_methods dao2 = new Student_methods();
 		while (true) {
 			System.out.println("1. 학생 로그인\n2. 사서 로그인\n3. 회원가입\n4. 종료\n메뉴를 입력하세요 : ");
 			int x = System.in.read() - 48;
@@ -36,26 +31,13 @@ public class Library_main {
 								System.in.read();
 								if (st_menu == 1) {
 									System.out.println(id + "님의 도서 대여 정보입니다.");
-							//		String rent_info = dao2.checkRent(id);
-							/*		System.out.print("ID : ");
-									String id = in.readLine();
-									System.out.print("Password : ");
-									String pass = in.readLine();
-									boolean bool = dao.loginMember(id, pass);
-									if (bool)
-										System.out.println("로그인에 성공하였습니다~!");
-									else
-										System.out.println("로그인에 실패하였습니다");*/
+									dao2.checkRent(id);
 									System.out.println();
 								} else if (st_menu == 2) {
 									System.out.println("도서검색 페이지 입니다.");
 									System.out.print("도서 제목(3자 이상) : ");
 									String book_sub = in.readLine();
-							/*		boolean bool = dao.loginMember(id, pass);
-									if (bool)
-										System.out.println("로그인에 성공하였습니다~!");
-									else
-										System.out.println("로그인에 실패하였습니다");*/
+									dao2.searchBook(book_sub);
 									System.out.println();
 								} else if (st_menu == 3) {
 									System.out.println("로그아웃되었습니다.");
@@ -83,7 +65,7 @@ public class Library_main {
 							System.out.println("로그인에 성공하였습니다~!");
 							while(true){
 								System.out.println("\n<<administer로 로그인되었습니다>>");
-								System.out.println("1. 도서 정보 추가	\n2. 도서 정보 수정\n3. 도서 정보 삭제\n4. 로그아웃 ");
+								System.out.println("1. 도서 정보 추가\n2. 도서 정보 수정\n3. 도서 정보 삭제\n4. 로그아웃 ");
 								System.out.print("메뉴 선택: ");
 								int st_menu = System.in.read() - 48;
 								System.in.read();

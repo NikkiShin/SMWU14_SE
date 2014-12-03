@@ -38,7 +38,7 @@ public class Admin_BookDelete {
 			int selectNum=Integer.parseInt(in.readLine());
 
 			if(selectNum==1){
-				String sql_delete = "delete from booklist where ISBN = ?";
+				String sql_delete = "delete from Booklist where ISBN = ?";
 				try {
 					PreparedStatement pstmt = conn.prepareStatement(sql_delete);
 					pstmt.setInt(1, isbn);

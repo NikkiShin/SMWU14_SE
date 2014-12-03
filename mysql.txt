@@ -1,5 +1,0 @@
-create table SE_member_st (id varchar(10), password varchar(10), name varchar(10), dapartment varchar(20);
-
-create table booklist (num int PRIMARY KEY auto_increment, title varchar(20), author varchar(10), publisher varchar(10), ISBN int, availability varchar(1), RentBy varchar(10)); 
-
-insert into booklist values (null, 'Java programming', 'S.H.Kim', 'freelec', 1, 'X', '1011234');

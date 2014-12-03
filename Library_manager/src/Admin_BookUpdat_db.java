@@ -30,8 +30,8 @@ public class Admin_BookUpdat_db {
 
 	//ISBN 확인
 	public boolean checkISBN(int isbn, boolean check) throws NumberFormatException, IOException{
-		//String del_check=y;
-		String query = "select title, author, publisher, ISBN, availability, RentBy from booklist where ISBN=" + isbn;
+		
+		String query = "select title, author, publisher, ISBN, availability, RentBy from Booklist where ISBN=" + isbn;
 
 		try {
 
@@ -68,7 +68,7 @@ public class Admin_BookUpdat_db {
 						System.out.println("\n1. ISBN: " + ISBN);
 						System.out.println("1. New ISBN: ");
 						int newISBN = Integer.parseInt(in.readLine());
-						String sql1="update booklist set ISBN=" + newISBN + " where ISBN=" + ISBN;
+						String sql1="update Booklist set ISBN=" + newISBN + " where ISBN=" + ISBN;
 						stmt.executeUpdate(sql1);
 
 					}else if(selectNum==2){
@@ -76,21 +76,21 @@ public class Admin_BookUpdat_db {
 						System.out.println("\n2. 제목: " + title);
 						System.out.println("2. New title: ");
 						String newTitle = in.readLine();
-						String sql2="update booklist set title='" + newTitle + "' where title='" + title + "'"; 
+						String sql2="update Booklist set title='" + newTitle + "' where title='" + title + "'"; 
 						stmt.executeUpdate(sql2);
 
 					}else if(selectNum==3){
 						System.out.println("\n3. 저자: " + author);
 						System.out.println("3. New author: ");
 						String newAuthor = in.readLine();
-						String sql3="update booklist set author='" + newAuthor + "' where author='" + author + "'"; 
+						String sql3="update Booklist set author='" + newAuthor + "' where author='" + author + "'"; 
 						stmt.executeUpdate(sql3);
 
 					}else if(selectNum==4){
 						System.out.println("\n4. 출판사: " + publisher);
 						System.out.println("4. New publisher: ");
 						String newPublisher = in.readLine();
-						String sql4="update booklist set publisher='" + newPublisher + "' where publisher='" + publisher + "'"; 
+						String sql4="update Booklist set publisher='" + newPublisher + "' where publisher='" + publisher + "'"; 
 						stmt.executeUpdate(sql4);
 
 					}else if(selectNum==5){
@@ -99,7 +99,7 @@ public class Admin_BookUpdat_db {
 						String newAvail = in.readLine();
 						System.out.println("5. New RentBy: ");
 						String newRentBy = in.readLine();
-						String sql5="update booklist set availability='" + newAvail +"', ";
+						String sql5="update Booklist set availability='" + newAvail +"', ";
 						sql5 = sql5 + " RentBy='" + newRentBy + "'";
 						//sql5 = sql5 + " where availability='" + availability + "' and RentBy='" + RentBy + "'";
 
