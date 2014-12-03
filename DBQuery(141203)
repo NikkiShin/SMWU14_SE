@@ -1,0 +1,12 @@
+CREATE TABLE Library_Member (id varchar(7) primary key, password varchar(10) not null, name varchar(10) not null, department varchar(20) not null);
+
+CREATE TABLE Booklist (num int PRIMARY KEY auto_increment, title varchar(25) not null, author varchar(20) not null, publisher varchar(10) not null, ISBN int not null, availability varchar(1) not null, RentBy varchar(7)); 
+
+insert into Booklist values (null, 'Java programming', 'S.H.Kim', 'freelec', 11, 'X', '1011234');
+insert into Booklist values (null, 'Compiler', 'S.K.Lee', 'sunny', 22, 'X', '1011229');
+insert into Booklist values (null, 'Compiler2', 'S.K.Lee', 'sunny', 23, 'X', '1011229');
+insert into Booklist values (null, 'Software Engineering', 'K.Y.Lee', 'knowledge', 33, 'O', null);
+insert into Booklist values (null, 'stranger', 'Albert Camus', 'minemsa', 44, 'O', null);
+insert into Booklist values (null, 'The Old Man and the Sea', 'Ernest Hemingway', 'language', 55, 'O', null);
+
+insert into Library_Member values ('admin', 1111, '관리자', '도서관');
