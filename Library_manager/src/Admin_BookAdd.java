@@ -1,8 +1,6 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 //import java.sql.Connection;
 
 public class Admin_BookAdd{

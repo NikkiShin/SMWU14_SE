@@ -82,7 +82,7 @@ public class Main_methods {
 				pstmt.executeUpdate();
 				pstmt.close();
 			} catch (SQLException ee) {
-				System.err.println("Faill Add the Book: " + ee.toString());
+				System.err.println("Fail Add the Book: " + ee.toString());
 				return false;
 			}
 			return true;

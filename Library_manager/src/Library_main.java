@@ -9,6 +9,10 @@ public class Library_main {
 	public static void main(String[] args) throws IOException {
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		Main_methods dao = new Main_methods();
+		
+		//추가
+		
+		
 		while (true) {
 			System.out.println("1. 학생 로그인\n2. 사서 로그인\n3. 회원가입\n4. 종료\n메뉴를 입력하세요 : ");
 			int x = System.in.read() - 48;
@@ -78,22 +82,24 @@ public class Library_main {
 						if (bool){
 							System.out.println("로그인에 성공하였습니다~!");
 							while(true){
-								System.out.println("administer로 로그인되었습니다.");
-								System.out.println("1. 도서 정보 추가		2. 도서 정보 수정		3. 도서 정보 삭제 		4. 로그아웃 ");
+								System.out.println("\n<<administer로 로그인되었습니다>>");
+								System.out.println("1. 도서 정보 추가	\n2. 도서 정보 수정\n3. 도서 정보 삭제\n4. 로그아웃 ");
+								System.out.print("메뉴 선택: ");
 								int st_menu = System.in.read() - 48;
 								System.in.read();
 								System.in.read();
 								if (st_menu == 1) {
-									System.out.println("도서 정보 추가 페이지입니다.");
+									System.out.println("\n도서 정보 추가 페이지입니다.");
 									new Admin_BookAdd();
 									System.out.println();
 								} else if (st_menu == 2) {
-									System.out.println("도서 정보 수정 페이지입니다.");
+									System.out.println("\n도서 정보 수정 페이지입니다.");
 									new Admin_BookUpdat();
 									System.out.println();
 								} else if (st_menu == 3) {
-									System.out.println("도서 정보 삭제 페이지입니다.");
-									//구현
+									System.out.println("\n도서 정보 삭제 페이지입니다.");
+									new Admin_BookDelete();
+									System.out.println();
 								} else if (st_menu == 4) {
 									System.out.println("로그아웃되었습니다.");
 									break;
