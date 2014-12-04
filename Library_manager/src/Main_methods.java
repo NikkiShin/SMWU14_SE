@@ -13,7 +13,7 @@ public class Main_methods {
 		} catch (ClassNotFoundException ee) {
 			return;
 		}
-		String url = "jdbc:mysql://127.0.0.1:3306/java";
+		String url = "jdbc:mysql://localhost:3306/java";
 		String id = "root";
 		String pass = "1234";
 		try {

@@ -26,7 +26,7 @@ public class Student_methods {
 	public String checkRent(String id){
 		String query = "select * from Booklist where RentBy = ?";
 	//	String query_2 = "select count(*) from Booklist where RentBy = ?";
-		System.out.println("ISBN \t  title \t\t author \t publisher \t " );
+		int ISBN = -1;
 		
 		try {
 			PreparedStatement pstmt = dc.prepareStatement(query);	
@@ -35,20 +35,30 @@ public class Student_methods {
 			ResultSet rs = pstmt.executeQuery();
 			//System.out.println("ISBN \t  title \t\t author \t publisher \t " );
 			
+			rs.last();
+			int nRecord = rs.getRow();
+			rs.beforeFirst();
+			
+			if(nRecord==0)
+				System.err.println("대여 중인 도서가 없습니다.");
+			else
+				System.out.println("\nISBN \t  title \t\t author \t publisher \t " );
+			
 			while(rs.next()){
 				//int no = rs.getInt(1);
 				String title = rs.getString(2);
 				String author = rs.getString(3);
 				String publisher = rs.getString(4);
-				int ISBN = rs.getInt(5);
+				ISBN = rs.getInt(5);
 				//String availability = rs.getString(6);
 				//String Rentby = rs.getString(7);
+				
 				System.out.println(ISBN + " \t " + title+ " \t\t " + author + " \t " + publisher + " \t " );					
 			}
 			
 			pstmt.close();
 		} catch (SQLException ee ) {
-			System.err.println("대여 중인 도서가 없습니다." + ee.toString());		//이게 안나옴 ㅜㅜ***************
+			//System.err.println("대여 중인 도서가 없습니다." + ee.toString());		//이게 안나옴 ㅜㅜ***************
 		}
 		
 		return null;
@@ -57,7 +67,6 @@ public class Student_methods {
 	// 도서 검색
 	public String searchBook(String substr_book) {
 		String query = "select * from Booklist where title like ?";
-		System.out.println("ISBN \t  title \t\t author \t publisher \t availability " );
 		
 		try {
 			PreparedStatement pstmt = dc.prepareStatement(query);	
@@ -65,6 +74,15 @@ public class Student_methods {
 		//	pstmt.executeQuery(query);
 			ResultSet rs = pstmt.executeQuery();
 			//System.out.println("ISBN \t  title \t\t author \t publisher \t " );
+			
+			rs.last();
+			int nRecord = rs.getRow();
+			rs.beforeFirst();
+			
+			if(nRecord==0)
+				System.err.println("검색 결과가 없습니다.");
+			else
+				System.out.println("\nISBN \t  title \t\t author \t publisher \t availability " );
 			
 			while(rs.next()){
 				//int no = rs.getInt(1);
@@ -79,7 +97,7 @@ public class Student_methods {
 			
 			pstmt.close();
 		} catch (SQLException ee ) {
-			System.err.println("대여 중인 도서가 없습니다." + ee.toString());		//이게 안나옴 ㅜㅜ***************
+			//System.err.println("대여 중인 도서가 없습니다." + ee.toString());		//이게 안나옴 ㅜㅜ***************
 		}
 		
 		return null;
