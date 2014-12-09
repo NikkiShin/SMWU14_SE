@@ -35,8 +35,14 @@ public class Library_main {
 									System.out.println();
 								} else if (st_menu == 2) {
 									System.out.println("도서검색 페이지 입니다.");
-									System.out.print("도서 제목(3자 이상) : ");
-									String book_sub = in.readLine();
+									String book_sub;
+									do{
+										System.out.print("도서 제목(3자 이상) : ");
+										book_sub = in.readLine();
+										if(book_sub.length()<3)
+											System.out.println("3글자 이상으로 입력하세요.");
+									}
+									while(book_sub.length()<3);
 									dao2.searchBook(book_sub);
 									System.out.println();
 								} else if (st_menu == 3) {
