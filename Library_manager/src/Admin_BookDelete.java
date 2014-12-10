@@ -27,8 +27,7 @@ public class Admin_BookDelete {
 			conn = DriverManager.getConnection(url, id, pass);
 		} catch (SQLException ee) {
 		}
-
-		//System.out.println("===도서 정보 삭제===");
+//
 		System.out.print("ISBN 입력: ");
 		int isbn = Integer.parseInt(in.readLine());
 		boolean a=db.checkISBN(isbn, false);
