@@ -5,7 +5,7 @@ import java.io.InputStreamReader;
 
 public class Admin_BookAdd{
 	BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-	Main_methods dad = new Main_methods();
+	Library_methods dao = new Library_methods();
 
 	
 	public Admin_BookAdd()throws IOException{
@@ -24,7 +24,7 @@ public class Admin_BookAdd{
 		int num= 0;
 		String avail = "O";
 		String rentBy = null;
-		boolean bool = dad.addBook(num,title,author, publisher,isbn,avail, rentBy); 
+		boolean bool = dao.addBook(num,title,author, publisher,isbn,avail, rentBy); 
 
 		if (bool)
 			System.out.println("======도서를 추가하였습니다.=======");

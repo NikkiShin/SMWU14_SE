@@ -1,146 +1,24 @@
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
+
 
 
 public class Library_main {
 	public static void main(String[] args) throws IOException {
-		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-		Main_methods dao = new Main_methods();
-		Student_methods dao2 = new Student_methods();
 		while (true) {
 			System.out.println("1. 학생 로그인\n2. 사서 로그인\n3. 회원가입\n4. 종료\n메뉴를 입력하세요 : ");
 			int x = System.in.read() - 48;
 			System.in.read();
 			System.in.read();
 			if (x == 1) {
-				System.out.println("로그인 페이지 입니다. -1 입력 시 메뉴로 돌아갑니다.");
-				System.out.print("ID : ");
-				String id = in.readLine();
-				if(!id.equals("-1")){
-					System.out.print("Password : ");
-					String pass = in.readLine();
-					if(!pass.equals("-1")){
-						boolean bool = dao.loginMember(id, pass);
-						if (bool){
-							while(true){
-								System.out.println(id + "로 로그인되었습니다.");
-								System.out.println("1. 대여 정보 조회		2. 도서 검색		3. 로그아웃 ");
-								int st_menu = System.in.read() - 48;
-								System.in.read();
-								System.in.read();
-								if (st_menu == 1) {
-									System.out.println(id + "님의 도서 대여 정보입니다.");
-									dao2.checkRent(id);
-									System.out.println();
-								} else if (st_menu == 2) {
-									System.out.println("도서검색 페이지 입니다.");
-									String book_sub;
-									do{
-										System.out.print("도서 제목(3자 이상) : ");
-										book_sub = in.readLine();
-										if(book_sub.length()<3)
-											System.out.println("3글자 이상으로 입력하세요.");
-									}
-									while(book_sub.length()<3);
-									dao2.searchBook(book_sub);
-									System.out.println();
-								} else if (st_menu == 3) {
-									System.out.println("로그아웃되었습니다.");
-									break;
-								} else {
-									System.err.println("잘못된 입력입니다.");
-								}
-							}
-						}
-						else
-							System.out.println("로그인에 실패하였습니다");
-						System.out.println("");
-					}
-				}
+				new Student_login();
 			} else if (x == 2) {
-				System.out.println("로그인 페이지 입니다. -1 입력 시 메뉴로 돌아갑니다.");
-				System.out.print("ID : ");
-				String id = in.readLine();
-				if(!id.equals("-1")){
-					System.out.print("Password : ");
-					String pass = in.readLine();
-					if(!id.equals("-1")){
-						boolean bool = dao.loginMember(id, pass);
-						if (bool){
-							System.out.println("로그인에 성공하였습니다~!");
-							while(true){
-								System.out.println("\n<<administer로 로그인되었습니다>>");
-								System.out.println("1. 도서 정보 추가\n2. 도서 정보 수정\n3. 도서 정보 삭제\n4. 로그아웃 ");
-								System.out.print("메뉴 선택: ");
-								int st_menu = System.in.read() - 48;
-								System.in.read();
-								System.in.read();
-								if (st_menu == 1) {
-									System.out.println("\n도서 정보 추가 페이지입니다.");
-									new Admin_BookAdd();
-									System.out.println();
-								} else if (st_menu == 2) {
-									System.out.println("\n도서 정보 수정 페이지입니다.");
-									new Admin_BookUpdat();
-									System.out.println();
-								} else if (st_menu == 3) {
-									System.out.println("\n도서 정보 삭제 페이지입니다.");
-									new Admin_BookDelete();
-									System.out.println();
-								} else if (st_menu == 4) {
-									System.out.println("로그아웃되었습니다.");
-									break;
-								} else {
-									System.err.println("잘못된 입력입니다.");
-								}
-							}
-						}
-						else
-							System.out.println("로그인에 실패하였습니다");
-						System.out.println("");
-					}
-				}
+				new Admin_login();
 			} else if (x == 3) {
-				System.out.println("회원가입 페이지 입니다. -1 입력 시 메뉴로 돌아갑니다.");
-				System.out.print("ID: ");
-				String id = in.readLine();
-				if(!id.equals("-1")){
-					String confirm = "No";
-					do{
-						System.out.print("Password : ");
-						String pass = in.readLine();
-						if(!pass.equals("-1")){ 
-							System.out.print("Password Confirm : ");
-							String passconfirm = in.readLine();
-							if(pass.equals(passconfirm))
-								confirm = "Yes";
-							else
-								System.out.println("* 비밀번호가 일치하지 않습니다.");
-							if(!passconfirm.equals("-1")&&confirm.equals("Yes")){
-								System.out.println("* 비밀번호 일치");
-								System.out.print("name : ");
-								String name = in.readLine();
-								if(!name.equals("-1")){ 
-									System.out.print("department : ");
-									String department = in.readLine();
-									if(!department.equals("-1")){ 
-										boolean bool = dao.registerMember(id, pass, name, department);
-										if (bool)
-											System.out.println("회원가입에 성공하였습니다~!");
-										else
-											System.out.println("회원가입에 실패하였습니다!!");
-										System.out.println("");
-									}
-								}
-							}
-						}
-					}while(confirm.equals("No"));
-				}
+				new Student_join();
 			} else if (x == 4) {
 				System.exit(0);
 			} else {
-				System.err.println("잘못 입력!!");
+				System.err.println("잘못된 입력입니다.");
 			}
 		}
 	}
