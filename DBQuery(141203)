@@ -1,6 +1,6 @@
-CREATE TABLE Library_Member (id varchar(7) primary key, password varchar(10) not null, name varchar(10) not null, department varchar(20) not null);
+﻿CREATE TABLE Library_Member (id varchar(7) primary key, password varchar(10) not null, name varchar(10) not null, department varchar(20) not null);
 
-CREATE TABLE Booklist (num int PRIMARY KEY auto_increment, title varchar(25) not null, author varchar(20) not null, publisher varchar(10) not null, ISBN int not null, availability varchar(1) not null, RentBy varchar(7)); 
+CREATE TABLE Booklist (num int PRIMARY KEY auto_increment, title varchar(25) not null, author varchar(20) not null, publisher varchar(10) not null, ISBN int UNIQUE, availability varchar(1) not null, RentBy varchar(7)); 
 
 insert into Booklist values (null, 'Java programming', 'S.H.Kim', 'freelec', 11, 'X', '1011234');
 insert into Booklist values (null, 'Compiler', 'S.K.Lee', 'sunny', 22, 'X', '1011229');
