@@ -36,11 +36,43 @@ public class Library_methods {
 			pstmt.executeUpdate();
 			pstmt.close();
 		} catch (SQLException ee) {
-			System.err.println("회원 가입 실패!! : " + ee.toString());
+			System.err.println("회원 가입 실패: " + ee.toString());
 			return false;
 		}
 		return true;
 	}
+	
+	//아이디 중복확인
+	public Boolean idValid(String id){
+		String query = "select * from Library_Member where id = ?";
+
+		try {
+			PreparedStatement pstmt = dc.prepareStatement(query);
+			pstmt.setString(1, id);
+			ResultSet rs = pstmt.executeQuery();
+
+			rs.last();
+			int nRecord = rs.getRow();
+			rs.beforeFirst();
+			pstmt.close();
+			if(nRecord==1){				
+				return false;
+			}
+			else{
+				//System.err.println("가입 가능한 아이디입니다.");
+				return true;
+			}
+			
+			
+			
+			
+		} catch (SQLException ee ) {
+			System.err.println("가입 절차 중 오류가 발생하였습니다.");
+		}
+
+		return null;
+	}
+
 
 	// 학생 로그인_DB
 	public boolean loginMember(String id, String pass) {
@@ -59,50 +91,77 @@ public class Library_methods {
 			rs.close();
 			pstmt.close();
 		} catch (SQLException ee) {
-			System.err.println("login 처리 실패!!");
+			System.err.println("login 처리 실패");
 		}
 		return true;
 	}
 
 
 
+
 	//대여 정보 조회 
 	public String checkRent(String id){
 		String query = "select * from Booklist where RentBy = ?";
-		//	String query_2 = "select count(*) from Booklist where RentBy = ?";
 		int ISBN = -1;
 
 		try {
 			PreparedStatement pstmt = dc.prepareStatement(query);	
 			pstmt.setString(1, id);
-			//	pstmt.executeQuery(query);
 			ResultSet rs = pstmt.executeQuery();
-			//System.out.println("ISBN \t  title \t\t author \t publisher \t " );
-
+			
 			rs.last();
 			int nRecord = rs.getRow();
 			rs.beforeFirst();
-
+			
 			if(nRecord==0)
 				System.out.println("대여 중인 도서가 없습니다.");
 			else
 				System.out.println("\nISBN \t  title \t\t author \t publisher \t " );
-
+			
 			while(rs.next()){
-				//int no = rs.getInt(1);
 				String title = rs.getString(2);
 				String author = rs.getString(3);
 				String publisher = rs.getString(4);
 				ISBN = rs.getInt(5);
-				//String availability = rs.getString(6);
-				//String Rentby = rs.getString(7);
 
 				System.out.println(ISBN + " \t " + title+ " \t\t " + author + " \t " + publisher + " \t " );					
 			}
 
 			pstmt.close();
+			
+			
 		} catch (SQLException ee ) {
-			//System.err.println("대여 중인 도서가 없습니다." + ee.toString());		//이게 안나옴 ㅜㅜ***************
+			System.err.println("대여 정보 조회 중 오류가 발생하였습니다.");
+		}
+
+		return null;
+	}
+	
+	//대여 중인 도서 수와 도서 가능 도서 수 출력
+	public String numRent(String id){
+		String query = "select * from Booklist where RentBy = ?";
+
+		try {
+			PreparedStatement pstmt = dc.prepareStatement(query);
+			pstmt.setString(1, id);
+			ResultSet rs = pstmt.executeQuery();
+
+			rs.last();
+			int nRecord = rs.getRow();
+			rs.beforeFirst();
+
+			int bound = 7 - nRecord;
+			
+			if(nRecord==0)
+				System.out.println("대여 가능 도서 수 : 7" );
+			else
+				System.out.println("대여 중인 도서 수: "+ nRecord + "\t\t 대여 가능 도서 수 : " + bound);
+			
+			pstmt.close();
+			
+			
+		} catch (SQLException ee ) {
+			System.err.println("대여 정보 조회 중 오류가 발생하였습니다.");
 		}
 
 		return null;
@@ -115,9 +174,7 @@ public class Library_methods {
 		try {
 			PreparedStatement pstmt = dc.prepareStatement(query);	
 			pstmt.setString(1, "%" + substr_book + "%");
-			//	pstmt.executeQuery(query);
 			ResultSet rs = pstmt.executeQuery();
-			//System.out.println("ISBN \t  title \t\t author \t publisher \t " );
 
 			rs.last();
 			int nRecord = rs.getRow();
@@ -129,23 +186,24 @@ public class Library_methods {
 				System.out.println("\nISBN \t  title \t\t author \t publisher \t availability " );
 
 			while(rs.next()){
-				//int no = rs.getInt(1);
 				String title = rs.getString(2);
 				String author = rs.getString(3);
 				String publisher = rs.getString(4);
 				int ISBN = rs.getInt(5);
 				String availability = rs.getString(6);
-				//String Rentby = rs.getString(7);
 				System.out.println(ISBN + " \t " + title+ " \t\t " + author + " \t " + publisher + " \t " + availability);					
 			}
 
 			pstmt.close();
 		} catch (SQLException ee ) {
-			//System.err.println("대여 중인 도서가 없습니다." + ee.toString());		//이게 안나옴 ㅜㅜ***************
+			System.err.println("도서 검색 중 오류가 발생하였습니다.");
 		}
 
 		return null;
 	}
+	
+
 
 
 }
+
