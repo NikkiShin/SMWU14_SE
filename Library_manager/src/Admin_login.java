@@ -5,7 +5,6 @@ import java.io.InputStreamReader;
 //사서 로그인시 메인 화면 구현
 public class Admin_login {
 	BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-	Library_methods dao = new Library_methods();	
 	
 	public Admin_login()throws IOException{
 		System.out.println("로그인 페이지 입니다. -1 입력 시 메뉴로 돌아갑니다.");
@@ -15,8 +14,7 @@ public class Admin_login {
 			System.out.print("Password : ");
 			String pass = in.readLine();
 			if(!id.equals("-1")){
-				boolean bool = dao.loginMember(id, pass);
-				if (bool){
+				if (id.equals("admin") && pass.equals("1111")){
 					System.out.println("로그인에 성공하였습니다~!");
 					while(true){
 						System.out.println("\n<<administer로 로그인되었습니다>>");
@@ -41,7 +39,7 @@ public class Admin_login {
 							System.out.println("로그아웃되었습니다.");
 							break;
 						} else {
-							System.err.println("잘못된 입력입니다.");
+							System.out.println("1~4번 사이의 숫자만 입력해주세요.");
 						}
 					}
 				}
@@ -55,4 +53,3 @@ public class Admin_login {
 	}
 	
 }
-

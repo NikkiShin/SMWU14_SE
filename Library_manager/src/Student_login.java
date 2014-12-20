@@ -43,7 +43,7 @@ public class Student_login {
 							System.out.println("로그아웃되었습니다.");
 							break;
 						} else {
-							System.err.println("잘못된 입력입니다.");
+							System.out.println("1~4번 사이의 숫자만 입력해주세요.");
 						}
 					}
 				}

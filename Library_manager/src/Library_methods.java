@@ -26,7 +26,7 @@ public class Library_methods {
 	public boolean registerMember(String id, String pass, String name,
 			String department) {
 		String query = "insert into Library_Member values (?, ?, ?, ?)";
-		
+
 		try {
 			PreparedStatement pstmt = dc.prepareStatement(query);
 			pstmt.setString(1, id);
@@ -45,7 +45,7 @@ public class Library_methods {
 	// 학생 로그인_DB
 	public boolean loginMember(String id, String pass) {
 		String query = "select * from Library_Member where id = ? and password = ?";
-		
+
 		try {
 			PreparedStatement pstmt = dc.prepareStatement(query);
 			pstmt.setString(1, id);
@@ -63,110 +63,89 @@ public class Library_methods {
 		}
 		return true;
 	}
-	
-	// for Add Book_Info.., 
 
-		public boolean addBook(int num, String title, String author, String publisher, int isbn, String avail, String rentBy) {
-			String query = "insert into Booklist values(?,?,?,?,?,?,?)";
-			
-			try {
-				PreparedStatement pstmt = dc.prepareStatement(query);
-				pstmt.setInt(1,num);// null 어떻게 넣는지
-				pstmt.setString(2, title);
-				pstmt.setString(3, author);
-				pstmt.setString(4, publisher);
-				pstmt.setInt(5, isbn);
-				pstmt.setString(6,avail);
-				pstmt.setString(7, rentBy);;
-				pstmt.executeUpdate();
-				pstmt.close();
-			} catch (SQLException ee) {
-				System.err.println("Fail Add the Book: " + ee.toString());
-				return false;
-			}
-			return true;
-		}
-		
-		//대여 정보 조회 
-		public String checkRent(String id){
-			String query = "select * from Booklist where RentBy = ?";
+
+
+	//대여 정보 조회 
+	public String checkRent(String id){
+		String query = "select * from Booklist where RentBy = ?";
 		//	String query_2 = "select count(*) from Booklist where RentBy = ?";
-			int ISBN = -1;
-			
-			try {
-				PreparedStatement pstmt = dc.prepareStatement(query);	
-				pstmt.setString(1, id);
+		int ISBN = -1;
+
+		try {
+			PreparedStatement pstmt = dc.prepareStatement(query);	
+			pstmt.setString(1, id);
 			//	pstmt.executeQuery(query);
-				ResultSet rs = pstmt.executeQuery();
-				//System.out.println("ISBN \t  title \t\t author \t publisher \t " );
-				
-				rs.last();
-				int nRecord = rs.getRow();
-				rs.beforeFirst();
-				
-				if(nRecord==0)
-					System.err.println("대여 중인 도서가 없습니다.");
-				else
-					System.out.println("\nISBN \t  title \t\t author \t publisher \t " );
-				
-				while(rs.next()){
-					//int no = rs.getInt(1);
-					String title = rs.getString(2);
-					String author = rs.getString(3);
-					String publisher = rs.getString(4);
-					ISBN = rs.getInt(5);
-					//String availability = rs.getString(6);
-					//String Rentby = rs.getString(7);
-					
-					System.out.println(ISBN + " \t " + title+ " \t\t " + author + " \t " + publisher + " \t " );					
-				}
-				
-				pstmt.close();
-			} catch (SQLException ee ) {
-				//System.err.println("대여 중인 도서가 없습니다." + ee.toString());		//이게 안나옴 ㅜㅜ***************
+			ResultSet rs = pstmt.executeQuery();
+			//System.out.println("ISBN \t  title \t\t author \t publisher \t " );
+
+			rs.last();
+			int nRecord = rs.getRow();
+			rs.beforeFirst();
+
+			if(nRecord==0)
+				System.out.println("대여 중인 도서가 없습니다.");
+			else
+				System.out.println("\nISBN \t  title \t\t author \t publisher \t " );
+
+			while(rs.next()){
+				//int no = rs.getInt(1);
+				String title = rs.getString(2);
+				String author = rs.getString(3);
+				String publisher = rs.getString(4);
+				ISBN = rs.getInt(5);
+				//String availability = rs.getString(6);
+				//String Rentby = rs.getString(7);
+
+				System.out.println(ISBN + " \t " + title+ " \t\t " + author + " \t " + publisher + " \t " );					
 			}
-			
-			return null;
+
+			pstmt.close();
+		} catch (SQLException ee ) {
+			//System.err.println("대여 중인 도서가 없습니다." + ee.toString());		//이게 안나옴 ㅜㅜ***************
 		}
 
-		// 도서 검색
-		public String searchBook(String substr_book) {
-			String query = "select * from Booklist where title like ?";
-			
-			try {
-				PreparedStatement pstmt = dc.prepareStatement(query);	
-				pstmt.setString(1, "%" + substr_book + "%");
+		return null;
+	}
+
+	// 도서 검색
+	public String searchBook(String substr_book) {
+		String query = "select * from Booklist where title like ? ORDER BY ISBN ASC";
+
+		try {
+			PreparedStatement pstmt = dc.prepareStatement(query);	
+			pstmt.setString(1, "%" + substr_book + "%");
 			//	pstmt.executeQuery(query);
-				ResultSet rs = pstmt.executeQuery();
-				//System.out.println("ISBN \t  title \t\t author \t publisher \t " );
-				
-				rs.last();
-				int nRecord = rs.getRow();
-				rs.beforeFirst();
-				
-				if(nRecord==0)
-					System.err.println("검색 결과가 없습니다.");
-				else
-					System.out.println("\nISBN \t  title \t\t author \t publisher \t availability " );
-				
-				while(rs.next()){
-					//int no = rs.getInt(1);
-					String title = rs.getString(2);
-					String author = rs.getString(3);
-					String publisher = rs.getString(4);
-					int ISBN = rs.getInt(5);
-					String availability = rs.getString(6);
-					//String Rentby = rs.getString(7);
-					System.out.println(ISBN + " \t " + title+ " \t\t " + author + " \t " + publisher + " \t " + availability);					
-				}
-				
-				pstmt.close();
-			} catch (SQLException ee ) {
-				//System.err.println("대여 중인 도서가 없습니다." + ee.toString());		//이게 안나옴 ㅜㅜ***************
+			ResultSet rs = pstmt.executeQuery();
+			//System.out.println("ISBN \t  title \t\t author \t publisher \t " );
+
+			rs.last();
+			int nRecord = rs.getRow();
+			rs.beforeFirst();
+
+			if(nRecord==0)
+				System.out.println("검색 결과가 없습니다.");
+			else
+				System.out.println("\nISBN \t  title \t\t author \t publisher \t availability " );
+
+			while(rs.next()){
+				//int no = rs.getInt(1);
+				String title = rs.getString(2);
+				String author = rs.getString(3);
+				String publisher = rs.getString(4);
+				int ISBN = rs.getInt(5);
+				String availability = rs.getString(6);
+				//String Rentby = rs.getString(7);
+				System.out.println(ISBN + " \t " + title+ " \t\t " + author + " \t " + publisher + " \t " + availability);					
 			}
-			
-			return null;
+
+			pstmt.close();
+		} catch (SQLException ee ) {
+			//System.err.println("대여 중인 도서가 없습니다." + ee.toString());		//이게 안나옴 ㅜㅜ***************
 		}
+
+		return null;
+	}
 
 
 }
